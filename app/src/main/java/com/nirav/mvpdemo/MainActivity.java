@@ -6,9 +6,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements LoginViewInterface{
+public class MainActivity extends AppCompatActivity implements LoginView {
 
-    LoginPresenterInterface mLoginPresenter;
+    LoginPresenter mLoginPresenter;
     EditText mUserName_edt;
     EditText mPassword_edt;
 

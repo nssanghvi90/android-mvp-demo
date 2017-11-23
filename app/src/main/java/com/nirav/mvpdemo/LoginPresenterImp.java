@@ -4,11 +4,11 @@ package com.nirav.mvpdemo;
  * Created by nirav on 23/11/17.
  */
 
-public class LoginPresenterImp implements LoginPresenterInterface {
+public class LoginPresenterImp implements LoginPresenter {
 
-    LoginViewInterface mLoginView;
+    LoginView mLoginView;
 
-    LoginPresenterImp(LoginViewInterface loginView){
+    LoginPresenterImp(LoginView loginView){
         this.mLoginView = loginView;
     }
 
