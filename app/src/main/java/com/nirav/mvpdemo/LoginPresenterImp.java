@@ -14,6 +14,9 @@ public class LoginPresenterImp implements LoginPresenter {
 
     @Override
     public void loginBtnClick(String userName, String pwd) {
+        if(this.mLoginView==null){
+            return;
+        }
         //validate the inputs
         if(userName.isEmpty()){
             this.mLoginView.showMessage("Invalid username");
@@ -28,15 +31,19 @@ public class LoginPresenterImp implements LoginPresenter {
 
     @Override
     public void onResume() {
-        this.mLoginView.showProgress(true);
+        if(this.mLoginView!=null){
+            this.mLoginView.showProgress(true);
+        }
     }
 
     @Override
     public void onDestroy() {
-
     }
 
     private void doLogin(String userName, String pwd){
+        if(this.mLoginView==null){
+            return;
+        }
         this.mLoginView.showProgress(false);
         this.mLoginView.showLoginResult(true);
     }
