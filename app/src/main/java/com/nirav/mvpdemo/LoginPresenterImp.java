@@ -4,12 +4,14 @@ package com.nirav.mvpdemo;
  * Created by nirav on 23/11/17.
  */
 
-public class LoginPresenterImp implements LoginPresenter {
+public class LoginPresenterImp implements LoginPresenter, LoginService.LoginServiceListener {
 
     LoginView mLoginView;
+    LoginService mLoginService;
 
     LoginPresenterImp(LoginView loginView){
         this.mLoginView = loginView;
+        this.mLoginService = new LoginServiceImp();
     }
 
     @Override
@@ -26,7 +28,7 @@ public class LoginPresenterImp implements LoginPresenter {
             this.mLoginView.showMessage("Invalid password");
             return;
         }
-        this.doLogin(userName,pwd);
+        this.mLoginService.login(userName,pwd,this);
     }
 
     @Override
@@ -40,12 +42,14 @@ public class LoginPresenterImp implements LoginPresenter {
     public void onDestroy() {
     }
 
-    private void doLogin(String userName, String pwd){
-        if(this.mLoginView==null){
-            return;
-        }
-        this.mLoginView.showProgress(false);
+
+    @Override
+    public void onSuccess() {
         this.mLoginView.showLoginResult(true);
     }
 
+    @Override
+    public void onFailure() {
+        this.mLoginView.showLoginResult(false);
+    }
 }
